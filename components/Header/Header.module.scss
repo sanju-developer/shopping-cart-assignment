@@ -1,0 +1,97 @@
+@import "../../styles/variables.module.scss";
+@import "../../styles/mixins.module.scss";
+
+.websiteHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 0rem 8rem 0rem;
+  box-shadow: 0px 5px 10px $shadow-color;
+  height: 75px;
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  background: $white-color;
+  .leftPortion {
+    display: flex;
+    padding: 8px 8px;
+    .websiteLogo {
+      width: 135px;
+    }
+    nav {
+      display: flex;
+      align-items: flex-end;
+      padding-left: 75px;
+      @include navTexts;
+      li {
+        list-style: none;
+        padding: 16px;
+        a {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  .rightPortion {
+    display: flex;
+    justify-content: space-between;
+    .authNavigation {
+      text-align: -webkit-right;
+      margin-top: 8px;
+      @include navTexts($fz-12);
+      a {
+        padding: 5px 3px;
+      }
+    }
+    .cart {
+      display: flex;
+      justify-content: space-evenly;
+      background-color: $grey-color;
+      padding: 0px 16px;
+      align-items: center;
+      p {
+        margin: 0px;
+        padding: 8px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .websiteHeader {
+    height: 60px;
+    padding: 0rem;
+    .leftPortion {
+      padding: 8px;
+      .websiteLogo {
+        width: 100px;
+      }
+      nav {
+        padding-left: 40px;
+        li {
+          padding: 0px 16px;
+        }
+      }
+    }
+    .rightPortion {
+      .authNavigation {
+        margin-top: 0px;
+      }
+      .cart {
+        padding: 0px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .websiteHeader {
+    .leftPortion {
+      nav {
+        padding-left: 0px;
+        li {
+          padding: 0px 8px;
+        }
+      }
+    }
+  }
+}

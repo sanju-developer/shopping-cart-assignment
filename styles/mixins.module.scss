@@ -1,0 +1,13 @@
+@import "./variables.module.scss";
+
+@mixin navTexts($fz: 16px) {
+  font-size: $fz;
+  color: $nav-text-color;
+  font-weight: 500;
+}
+
+@mixin fontWithBlackAndWeight($fz: 16px) {
+  font-size: $fz;
+  color: $black-color;
+  font-weight: 500;
+}

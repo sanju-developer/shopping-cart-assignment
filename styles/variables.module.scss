@@ -1,0 +1,18 @@
+$btn-color: #d10157;
+$grey-color: #eeeeee;
+$shadow-color: #ebebeb;
+$nav-text-color: #7f7f7f;
+$white-color: #ffffff;
+$black-color: #000000;
+
+$fz-12: 12px;
+
+:export {
+  btnColor: $btn-color;
+  fz12: $fz-12;
+  greyColor: $grey-color;
+  shadowColor: $shadow-color;
+  textColor: $nav-text-color;
+  whiteColor: $white-color;
+  blackColor: $black-color;
+}

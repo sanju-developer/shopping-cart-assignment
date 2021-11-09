@@ -11,6 +11,8 @@ export const CategoryCardStyle = styled.div`
   align-items: center;
   margin-bottom: 16px;
   padding: 16px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+
   &:nth-child(2n) {
     flex-direction: row-reverse;
   }

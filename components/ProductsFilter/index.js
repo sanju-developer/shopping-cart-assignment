@@ -49,7 +49,9 @@ export const ProductsFilter = ({ isMobileView }) => {
           onClick={(e) => filterHandlerOnMobile(e.target.value)}
         >
           {categoriesApiData?.map((category) => (
-            <option value={category?.name}>{category?.name}</option>
+            <option key={category?.id} value={category?.name}>
+              {category?.name}
+            </option>
           ))}
         </select>
       </DropdownMobileFilter>

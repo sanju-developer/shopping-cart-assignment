@@ -15,22 +15,27 @@ export const ProductCard = ({ product }) => {
       <ProductDetailStyle>
         <Image
           src={product?.imageURL}
-          width={"100%"}
-          height={"100%"}
+          //   width={"100%"}
+          //   height={"100%"}
+          width={150}
+          height={150}
           responsive
         />
-        <p>{product?.description}</p>
+        <BtnSectionStyles>
+          <p title={product?.description}>{product?.description}</p>
+          {isDesktopView ? (
+            <>
+              <p>MRP Rs.{product?.price}</p>
+              <SimpleButton btnText={"Buy Now"} customPadding="10px 24px" />
+            </>
+          ) : (
+            <SimpleButton
+              btnText={`Buy Now @ MRP Rs.${product?.price}`}
+              customPadding="10px 8px"
+            />
+          )}
+        </BtnSectionStyles>
       </ProductDetailStyle>
-      <BtnSectionStyles>
-        {isDesktopView ? (
-          <>
-            <p>MRP Rs.{product?.price}</p>
-            <SimpleButton btnText={"Buy Now"} />{" "}
-          </>
-        ) : (
-          <SimpleButton btnText={`Buy Now @ MRP Rs.${product?.price}`} />
-        )}
-      </BtnSectionStyles>
     </ProductCardStyle>
   );
 };

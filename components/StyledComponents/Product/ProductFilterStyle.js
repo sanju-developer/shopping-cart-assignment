@@ -17,11 +17,12 @@ export const ProductFilterStyle = styled.nav`
   ul {
     margin: 0px;
     list-style: none;
-    padding: 0px 16px;
+    padding: 0px;
   }
   li {
     padding: 8px;
     cursor: pointer;
+    border-bottom: 1px solid #bfbfbf;
   }
 `;
 

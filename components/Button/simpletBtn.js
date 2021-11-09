@@ -1,4 +1,4 @@
-import WebsiteButton from "../StyledComponents/WebsiteButton";
+import WebsiteButton from "../StyledComponents/Buttons/WebsiteButton";
 
 export default function SimpleButton({ btnHandler, btnText }) {
   return <WebsiteButton onclick={btnHandler}>{btnText}</WebsiteButton>;

@@ -6,7 +6,7 @@ export default function CategoriesPageApi(req, res) {
     resolve(
       setTimeout(() => {
         res.status(200).json(CategoriesPageData);
-      }, 1500)
+      }, 500)
     );
   });
 }

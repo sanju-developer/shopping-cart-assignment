@@ -1,11 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+
 import logo from "/public/static/images/logo.png";
 import styles from "./Header.module.scss";
 import cartLogo from "/public/static/images/cart.svg";
 import { isUserLoggedIn } from "../../utils/storageUtils";
+import { productFilter } from "../../redux/actions/productsAction";
 
 export default function Headers() {
+  const dispatch = useDispatch();
+  const navHandler = () => {
+    dispatch(productFilter(null));
+  };
+
   return (
     <header className={styles.websiteHeader}>
       <div className={styles.leftPortion}>
@@ -16,7 +24,7 @@ export default function Headers() {
           <li>
             <Link href="/">Home</Link>
           </li>
-          <li>
+          <li onClick={navHandler}>
             <Link href="/products">Products</Link>
           </li>
         </nav>

@@ -3,7 +3,7 @@ import {
   CategoryCardDetailStyle,
   CategoryCardStyle,
   CategoryCardWrapperStyle,
-} from "../StyledComponents/CategoryCardStyle";
+} from "../StyledComponents/Home/CategoryCardStyle";
 
 export const CategoryCard = ({ categories }) => {
   return (

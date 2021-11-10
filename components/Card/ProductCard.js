@@ -14,8 +14,10 @@ export const ProductCard = ({ product }) => {
       <h4>{product?.name}</h4>
       <ProductDetailStyle>
         <Image src={product?.imageURL} width={150} height={150} />
+        {/* for tablet view */}
         <p title={product?.description}>{product?.description}</p>
         <BtnSectionStyles>
+          {/* for mobile and web view */}
           <p title={product?.description}>{product?.description}</p>
           {isDesktopView ? (
             <>

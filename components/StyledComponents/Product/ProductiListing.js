@@ -5,7 +5,6 @@ export const ProductiListing = styled.section`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-
   @media screen and (max-width: 480px) {
     width: 100%;
   }

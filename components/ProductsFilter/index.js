@@ -7,11 +7,13 @@ import {
 } from "../StyledComponents/Product/ProductFilterStyle";
 import categoriesAction from "../../redux/actions/categoriesAction";
 import { productFilter } from "../../redux/actions/productsAction";
+import { useRouter } from "next/router";
 
 export const ProductsFilter = ({ isMobileView }) => {
   const { apiData: categoriesApiData, isApiLoading: categoriesApiLoading } =
     useSelector((state) => state.categories);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     if (!categoriesApiData) {
@@ -20,7 +22,7 @@ export const ProductsFilter = ({ isMobileView }) => {
   }, [categoriesApiData]);
 
   const filterHandler = (category) => {
-    dispatch(productFilter(category));
+    router.push(`/products?filter=${category?.key}`);
   };
 
   const filterHandlerOnMobile = (category) => {
@@ -35,7 +37,11 @@ export const ProductsFilter = ({ isMobileView }) => {
       <ProductFilterStyle>
         <ul>
           {categoriesApiData?.map((category) => (
-            <li key={category?.id} onClick={() => filterHandler(category)}>
+            <li
+              key={category?.id}
+              className={category?.key === router?.query.filter ? "active" : ""}
+              onClick={() => filterHandler(category)}
+            >
               <a href="javascript:void(0);">{category?.name}</a>
             </li>
           ))}

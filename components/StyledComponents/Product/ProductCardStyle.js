@@ -30,12 +30,39 @@ export const ProductDetailStyle = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   padding-top: 24px;
-
+  p:nth-child(2) {
+    display: none;
+  }
+  @media screen and (max-width: 768px) {
+    align-items: strech;
+    p:nth-child(1) {
+      display: none;
+    }
+    p:nth-child(2) {
+      display: inline-flex;
+      align-items: strech;
+      width: 45%;
+      ${fontWithBlackAndWeight("10px")}
+      padding:4px;
+      background-color: ${greyColor};
+      overflow: hidden;
+    }
+    btn {
+      width: 100%;
+    }
+  }
   @media screen and (max-width: 480px) {
     flex-wrap: nowrap;
     justify-content: space-evenly;
     box-shadow: none;
     padding-top: 0px;
+    p:nth-child(1) {
+      display: inline-flex;
+      width: 50%;
+    }
+    p:nth-child(2) {
+      display: none;
+    }
   }
 `;
 
@@ -53,35 +80,23 @@ export const BtnSectionStyles = styled.div`
     height: 60px;
     overflow: hidden;
   }
+  span {
+    ${fontWithBlackAndWeight("12px")}
+  }
+
   @media screen and (max-width: 768px) {
     justify-content: strech;
-    p {
-      margin-left: 16px;
-      width: 50%;
-      height: 100%;
-    }
-  }
-  p {
-    ${fontWithBlackAndWeight("10px")}
-  }
-  @media screen and (max-width: 768px) {
-    justify-content: strech;
-    width: 50%;
+    width: 100%;
     p:first-child {
       margin: 0px;
-    }
-    p:nth-child(2) {
-      display: none;
     }
     button {
       width: 100%;
       font-size: 12px;
     }
   }
-
   @media screen and (max-width: 480px) {
-    p:first-child {
-      margin: 0px;
-    }
+    justify-content: strech;
+    width: 50%;
   }
 `;

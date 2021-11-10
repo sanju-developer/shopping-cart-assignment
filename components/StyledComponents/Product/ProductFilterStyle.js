@@ -12,7 +12,6 @@ export const ProductFilterStyle = styled.nav`
   width: 20%;
   background-color: ${greyColor};
   ${navTextsMixin("12px")}
-  min-height:100vh;
 
   ul {
     margin: 0px;
@@ -23,6 +22,9 @@ export const ProductFilterStyle = styled.nav`
     padding: 8px;
     cursor: pointer;
     border-bottom: 1px solid #bfbfbf;
+  }
+  li.active {
+    color: ${btnColor};
   }
 `;
 

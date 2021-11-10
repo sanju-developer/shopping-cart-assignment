@@ -12,6 +12,7 @@ export const Banners = ({ banners }) => {
     >
       {banners?.map((ban) => (
         <Image
+          key={ban?.id}
           src={ban?.bannerImageUrl}
           width={1024}
           height={250}

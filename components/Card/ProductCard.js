@@ -10,28 +10,22 @@ import {
 export const ProductCard = ({ product }) => {
   const isDesktopView = useMediaQuery("(min-width: 769px)");
   return (
-    <ProductCardStyle id={product?.id}>
+    <ProductCardStyle key={product?.id}>
       <h4>{product?.name}</h4>
       <ProductDetailStyle>
-        <Image
-          src={product?.imageURL}
-          //   width={"100%"}
-          //   height={"100%"}
-          width={150}
-          height={150}
-          responsive
-        />
+        <Image src={product?.imageURL} width={150} height={150} />
+        <p title={product?.description}>{product?.description}</p>
         <BtnSectionStyles>
           <p title={product?.description}>{product?.description}</p>
           {isDesktopView ? (
             <>
-              <p>MRP Rs.{product?.price}</p>
+              <span>MRP Rs.{product?.price}</span>
               <SimpleButton btnText={"Buy Now"} customPadding="10px 24px" />
             </>
           ) : (
             <SimpleButton
               btnText={`Buy Now @ MRP Rs.${product?.price}`}
-              customPadding="10px 8px"
+              customPadding="10px 0px"
             />
           )}
         </BtnSectionStyles>

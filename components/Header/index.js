@@ -22,7 +22,7 @@ export default function Headers() {
         <div className={styles.websiteLogo}>
           <Image
             src={logo}
-            name="sabka-bazar"
+            alt="sabka-bazar"
             onClick={() => router.replace("/")}
           />
         </div>

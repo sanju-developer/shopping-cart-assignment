@@ -8,6 +8,7 @@ import { CategoryCard } from "../components/Card/CategoryCard";
 import { HomePageBanner } from "../components/StyledComponents/Home/HomePageBanner";
 import { NoDataFound } from "../components/NoDataFound";
 import { CustomLoader } from "../components/Loaders";
+import Head from "next/head";
 
 export default function Home() {
   const disptach = useDispatch();
@@ -22,6 +23,9 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>Sabka Bazaar: Online Store</title>
+      </Head>
       <HomePageBanner>
         {isApiLoading ? (
           <CustomLoader />

@@ -12,6 +12,7 @@ import styles from "../../styles/Product.module.scss";
 import { NoDataFound } from "../../components/NoDataFound";
 import { useMediaQuery } from "../../Hooks/useMediaQeury";
 import { CustomLoader } from "../../components/Loaders";
+import Head from "next/head";
 
 export default function Products() {
   const dispatch = useDispatch();
@@ -48,6 +49,9 @@ export default function Products() {
   return (
     // not use styled component for product listing section bcz UI is getting blocked as unless no data coming from api of product so styled component also not reflecting for sidebar navigation as well
     <div className={styles.productSection}>
+      <Head>
+        <title>Sabka Bazaar: Products @ best</title>
+      </Head>
       <ProductsFilter isMobileView={isMobileView}></ProductsFilter>
       <div className={styles.productListing}>
         {isApiLoading ? (

@@ -74,10 +74,10 @@ export const BtnSectionStyles = styled.div`
   margin-bottom: 4px;
   p:first-child {
     width: 100%;
-    ${fontWithBlackAndWeight("10px")}
+    ${fontWithBlackAndWeight("12px")}
     padding:4px;
     background-color: ${greyColor};
-    height: 60px;
+    height: 73px;
     overflow: hidden;
   }
   span {

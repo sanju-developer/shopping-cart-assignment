@@ -7,9 +7,11 @@ import styles from "./Header.module.scss";
 import cartLogo from "/public/static/images/cart.svg";
 import { isUserLoggedIn } from "../../utils/storageUtils";
 import { productFilter } from "../../redux/actions/productsAction";
+import { useRouter } from "next/router";
 
 export default function Headers() {
   const dispatch = useDispatch();
+  const router = useRouter();
   const navHandler = () => {
     dispatch(productFilter(null));
   };
@@ -18,7 +20,11 @@ export default function Headers() {
     <header className={styles.websiteHeader}>
       <div className={styles.leftPortion}>
         <div className={styles.websiteLogo}>
-          <Image src={logo} name="sabka-bazar" />
+          <Image
+            src={logo}
+            name="sabka-bazar"
+            onClick={() => router.replace("/")}
+          />
         </div>
         <nav>
           <li>

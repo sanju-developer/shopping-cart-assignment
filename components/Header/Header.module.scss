@@ -90,6 +90,18 @@
         padding-left: 0px;
         li {
           padding: 0px 8px;
+          font-size: $fz-12;
+        }
+      }
+    }
+    .rightPortion {
+      .cart {
+        flex-direction: column;
+        margin: 0px;
+        padding: 0px 4px;
+        font-size: $fz-12;
+        p {
+          padding: 0px;
         }
       }
     }

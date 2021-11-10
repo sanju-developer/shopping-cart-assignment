@@ -42,7 +42,7 @@ export const ProductsFilter = ({ isMobileView }) => {
               className={category?.key === router?.query.filter ? "active" : ""}
               onClick={() => filterHandler(category)}
             >
-              <a href="javascript:void(0);">{category?.name}</a>
+              <a href="#">{category?.name}</a>
             </li>
           ))}
         </ul>

@@ -7,6 +7,7 @@ import { Banners } from "../components/HomePage/Banners";
 import { CategoryCard } from "../components/Card/CategoryCard";
 import { HomePageBanner } from "../components/StyledComponents/Home/HomePageBanner";
 import { NoDataFound } from "../components/NoDataFound";
+import { CustomLoader } from "../components/Loaders";
 
 export default function Home() {
   const disptach = useDispatch();
@@ -15,20 +16,30 @@ export default function Home() {
     useSelector((state) => state.categories);
 
   useEffect(() => {
-    if (!categoriesApiData || !apiData) {
-      disptach(homepageAction());
-      disptach(categoriesAction());
-    }
-  }, [apiData, categoriesApiData]);
+    disptach(homepageAction());
+    disptach(categoriesAction());
+  }, []);
 
-  return apiData?.length != 0 ? (
-    <HomePageBanner>
-      <Banners banners={apiData} />
-      {categoriesApiData && categoriesApiData?.length != 0 && (
-        <CategoryCard categories={categoriesApiData} />
+  return (
+    <>
+      <HomePageBanner>
+        {isApiLoading ? (
+          <CustomLoader />
+        ) : apiData?.length !== 0 ? (
+          <Banners banners={apiData} />
+        ) : (
+          <NoDataFound />
+        )}
+      </HomePageBanner>
+
+      {categoriesApiLoading ? (
+        <CustomLoader />
+      ) : (
+        categoriesApiData &&
+        categoriesApiData?.length != 0 && (
+          <CategoryCard categories={categoriesApiData} />
+        )
       )}
-    </HomePageBanner>
-  ) : (
-    <NoDataFound />
+    </>
   );
 }

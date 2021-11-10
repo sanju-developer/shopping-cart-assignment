@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
 import { ProductCard } from "../../components/Card/ProductCard";
-import { ProductiListing } from "../../components/StyledComponents/Product/ProductiListing";
 import { ProductsFilter } from "../../components/ProductsFilter";
 import productsAction, {
   productFilter,
@@ -12,6 +11,7 @@ import productsAction, {
 import styles from "../../styles/Product.module.scss";
 import { NoDataFound } from "../../components/NoDataFound";
 import { useMediaQuery } from "../../Hooks/useMediaQeury";
+import { CustomLoader } from "../../components/Loaders";
 
 export default function Products() {
   const dispatch = useDispatch();
@@ -49,17 +49,17 @@ export default function Products() {
     // not use styled component for product listing section bcz UI is getting blocked as unless no data coming from api of product so styled component also not reflecting for sidebar navigation as well
     <div className={styles.productSection}>
       <ProductsFilter isMobileView={isMobileView}></ProductsFilter>
-      {apiData && (
-        <ProductiListing>
-          {apiData?.length !== 0 ? (
-            apiData?.map((product) => (
-              <ProductCard key={product?.id} product={product} />
-            ))
-          ) : (
-            <NoDataFound />
-          )}
-        </ProductiListing>
-      )}
+      <div className={styles.productListing}>
+        {isApiLoading ? (
+          <CustomLoader />
+        ) : apiData?.length !== 0 ? (
+          apiData?.map((product) => (
+            <ProductCard key={product?.id} product={product} />
+          ))
+        ) : (
+          <NoDataFound />
+        )}
+      </div>
     </div>
   );
 }

@@ -30,25 +30,12 @@ export const ProductDetailStyle = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   padding-top: 24px;
-  // p {
-  //   ${fontWithBlackAndWeight("10px")}
-  //   padding:4px;
-  //   background-color: ${greyColor};
-  //   height: 63px;
-  //   overflow: hidden;
-  // }
-  // @media screen and (max-width: 768px) {
-  //   justify-content: strech;
-  //   p {
-  //     margin-left: 16px;
-  //     width: 50%;
-  //     height: 100%;
-  //   }
-  // }
+
   @media screen and (max-width: 480px) {
     flex-wrap: nowrap;
     justify-content: space-evenly;
     box-shadow: none;
+    padding-top: 0px;
   }
 `;
 

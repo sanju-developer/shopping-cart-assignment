@@ -9,7 +9,7 @@ import { isUserLoggedIn } from "../../utils/storageUtils";
 import { productFilter } from "../../redux/actions/productsAction";
 import { useRouter } from "next/router";
 
-export default function Headers() {
+export default function Headers({ verifiedUser }) {
   const dispatch = useDispatch();
   const router = useRouter();
   const navHandler = () => {
@@ -37,12 +37,12 @@ export default function Headers() {
       </div>
       <div
         className={styles.rightPortion}
-        style={{ flexDirection: isUserLoggedIn() ? "row" : "column" }}
+        style={{ flexDirection: verifiedUser ? "row" : "column" }}
       >
-        {!isUserLoggedIn() && (
+        {!verifiedUser && (
           <div className={styles.authNavigation}>
-            <Link href="/signin">SignIn</Link>
-            <Link href="/register">Register</Link>
+            <Link href="/signIn">SignIn</Link>
+            <Link href="/signUp">Register</Link>
           </div>
         )}
         <div className={styles.cart}>

@@ -4,14 +4,28 @@ import { ServerStyleSheet } from "styled-components";
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
-    const page = ctx.renderPage(
-      (App) => (props) => sheet.collectStyles(<App {...props} />)
-    );
+    const originalRenderPage = ctx.renderPage;
 
-    const styleTags = sheet.getStyleElement();
-    return { ...page, styleTags, ...ctx };
-    // const initialProps = await Document.getInitialProps(ctx);
-    // return { ...initialProps };
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(<App {...props} />),
+        });
+
+      const initialProps = await Document.getInitialProps(ctx);
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ),
+      };
+    } finally {
+      sheet.seal();
+    }
   }
 
   render() {

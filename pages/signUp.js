@@ -1,3 +1,5 @@
+import { useDispatch } from "react-redux";
+
 import { FormInput } from "../components/Input/FormInput";
 import {
   AuthContainerStyles,
@@ -5,15 +7,16 @@ import {
   SectionLeft,
 } from "../components/StyledComponents/Auth/Auth";
 import SimpleButton from "../components/Button/simpletBtn";
-import { setAccessToken } from "../utils/storageUtils";
 import { useRouter } from "next/router";
+import loginAction from "../redux/actions/authAction";
 
 const SignUp = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const singupBtnHandler = (e) => {
     e.preventDefault();
-    setAccessToken("asda##jh08@KJsdfs9d8");
+    dispatch(loginAction());
     router.push("/home");
   };
 

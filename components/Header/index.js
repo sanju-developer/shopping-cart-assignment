@@ -1,19 +1,25 @@
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
 
 import logo from "/public/static/images/logo.png";
 import styles from "./Header.module.scss";
 import cartLogo from "/public/static/images/cart.svg";
-import { isUserLoggedIn } from "../../utils/storageUtils";
 import { productFilter } from "../../redux/actions/productsAction";
-import { useRouter } from "next/router";
+import { openCloseCartAction } from "../../redux/actions/cartAction";
 
 export default function Headers({ verifiedUser }) {
   const dispatch = useDispatch();
   const router = useRouter();
+  const { isCartOpen } = useSelector((state) => state?.cart);
+
   const navHandler = () => {
     dispatch(productFilter(null));
+  };
+
+  const cartHandler = () => {
+    dispatch(openCloseCartAction(!isCartOpen));
   };
 
   return (
@@ -28,7 +34,7 @@ export default function Headers({ verifiedUser }) {
         </div>
         <nav>
           <li>
-            <Link href="/">Home</Link>
+            <Link href="/home">Home</Link>
           </li>
           <li onClick={navHandler}>
             <Link href="/products">Products</Link>
@@ -45,7 +51,7 @@ export default function Headers({ verifiedUser }) {
             <Link href="/signUp">Register</Link>
           </div>
         )}
-        <div className={styles.cart}>
+        <div className={styles.cart} onClick={cartHandler}>
           <Image src={cartLogo} alt="shopping-cart" />
           <p>0 items</p>
         </div>

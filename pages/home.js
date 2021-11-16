@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Head from "next/head";
 import { useDispatch, useSelector } from "react-redux";
 
 import homepageAction from "../redux/actions/homepageAction";
@@ -8,7 +9,6 @@ import { CategoryCard } from "../components/Card/CategoryCard";
 import { HomePageBanner } from "../components/StyledComponents/Home/HomePageBanner";
 import { NoDataFound } from "../components/NoDataFound";
 import { CustomLoader } from "../components/Loaders";
-import Head from "next/head";
 
 export default function Home() {
   const disptach = useDispatch();

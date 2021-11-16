@@ -16,10 +16,15 @@ export default function Headers({ verifiedUser }) {
 
   const navHandler = () => {
     dispatch(productFilter(null));
+    dispatch(openCloseCartAction(false));
   };
 
   const cartHandler = () => {
     dispatch(openCloseCartAction(!isCartOpen));
+  };
+
+  const closeAddToCartModuleHandler = () => {
+    dispatch(openCloseCartAction(false));
   };
 
   return (
@@ -33,7 +38,7 @@ export default function Headers({ verifiedUser }) {
           />
         </div>
         <nav>
-          <li>
+          <li onClick={closeAddToCartModuleHandler}>
             <Link href="/home">Home</Link>
           </li>
           <li onClick={navHandler}>

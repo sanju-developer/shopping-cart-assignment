@@ -24,7 +24,7 @@ const loginAction = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: `${ReducerName.AUTH}_${SET_API_ERR}`,
-      payload: "Error occured in authentication.",
+      payload: "Error occured in authentication." + error,
     });
   }
 };

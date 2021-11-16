@@ -6,7 +6,7 @@ export default function ProductsPageApi(req, res) {
     resolve(
       setTimeout(() => {
         res.status(200).json(ProductsPageData);
-      }, 1500)
+      }, 500)
     );
   });
 }

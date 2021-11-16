@@ -1,13 +1,17 @@
 import styled from "styled-components";
 import { btnColor, whiteColor } from "../../../styles/variables.module.scss";
 
-const CheckoutButtonStyles = styled.button`
+const CheckoutButton = styled.button`
   background-color: ${btnColor};
   color: ${whiteColor};
-  padding: 12px 14px;
+  padding: 8px;
   border: none;
   border-radius: 2px;
+  width: 100%;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
-export default CheckoutButtonStyles;
+export default CheckoutButton;

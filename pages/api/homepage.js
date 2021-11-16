@@ -6,7 +6,7 @@ export default function homepageApi(req, res) {
     resolve(
       setTimeout(() => {
         res.status(200).json(websiteHomePageData);
-      }, 1500)
+      }, 500)
     );
   });
 }

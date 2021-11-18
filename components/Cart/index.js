@@ -26,11 +26,21 @@ import { NoDataFound } from "../NoDataFound";
 import SimpleButton from "../Button/simpletBtn";
 import { blackColor } from "../../styles/variables.module.scss";
 import lowestPrice from "../../public/static/images/lowest-price.png";
+import { useEffect, useState } from "react";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { isApiLoading, apiData } = useSelector((state) => state?.cart);
+  const [totalAmount, setTotalAmount] = useState(0);
+
+  useEffect(() => {
+    if (apiData) {
+      let totalSum = 0;
+      apiData?.forEach((item) => (totalSum += item.price * item.quantity));
+      setTotalAmount(totalSum);
+    }
+  }, [apiData]);
 
   const HideCart = (e) => {
     dispatch(openCloseCartAction(false));
@@ -68,7 +78,7 @@ const Cart = () => {
             apiData?.map((cart) => {
               return (
                 <>
-                  <CartCardSection>
+                  <CartCardSection key={cart.id}>
                     <Image
                       src={cart?.imageURL}
                       alt={cart?.name}
@@ -124,7 +134,7 @@ const Cart = () => {
               btnText={` ${
                 apiData?.length !== 0 ? "Proceed to Checkout" : "Start Shopping"
               }`}
-              price={apiData?.length !== 0 ? 120 : false}
+              price={apiData?.length !== 0 ? totalAmount : false}
               btnHandler={() =>
                 apiData?.length !== 0 ? {} : checkoutBtnHandler()
               }

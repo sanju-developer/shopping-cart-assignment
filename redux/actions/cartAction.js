@@ -52,9 +52,9 @@ export const addRemoveToCartItemsAction = (item, type) => async (dispatch) => {
     payload: item,
   });
   const resp =
-    (await type) === "remove"
-      ? removeItemFromCartApiService(item)
-      : addToCartItemApiService(item);
+    type === "remove"
+      ? await removeItemFromCartApiService(item)
+      : await addToCartItemApiService(item);
   try {
     dispatch({
       type: `${ReducerName.ADD_TO_CART}_${IS_API_LOADING}`,

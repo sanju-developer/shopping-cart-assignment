@@ -44,14 +44,10 @@ export const ProductCard = ({ product, id }) => {
                 customPadding="10px 24px"
                 btnHandler={addToCartHandler}
                 isDisabled={
-                  selectedProduct?.id === product?.id
-                    ? isAddToCartApiLoading
-                    : false
+                  selectedProduct?.id === id ? isAddToCartApiLoading : false
                 }
                 showLoader={
-                  selectedProduct?.id === product?.id
-                    ? isAddToCartApiLoading
-                    : false
+                  selectedProduct?.id === id ? isAddToCartApiLoading : false
                 }
               />
             </>
@@ -60,14 +56,10 @@ export const ProductCard = ({ product, id }) => {
               btnText={`Buy Now @ MRP Rs.${product?.price}`}
               customPadding="10px 0px"
               showLoader={
-                selectedProduct?.id === product?.id
-                  ? isAddToCartApiLoading
-                  : false
+                selectedProduct?.id === id ? isAddToCartApiLoading : false
               }
               isDisabled={
-                selectedProduct?.id === product?.id
-                  ? isAddToCartApiLoading
-                  : false
+                selectedProduct?.id === id ? isAddToCartApiLoading : false
               }
               btnHandler={addToCartHandler}
             />

@@ -60,7 +60,8 @@ const Cart = () => {
       <CartStyles onClick={innerCartItemHandler}>
         <CartHeaderStyle>
           <CartHeaderLeftSection>
-            <h3>My Cart</h3>&nbsp;<span>(0 items)</span>
+            <h3>My Cart</h3>&nbsp;
+            <span>({apiData?.length ? apiData?.length : 0} items)</span>
           </CartHeaderLeftSection>
           <CartHeaderRightSection>
             <button

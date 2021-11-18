@@ -24,7 +24,7 @@ export const CartContainerStyles = styled.section`
 
 export const CartStyles = styled.div`
   width: 40%;
-  height: 78%;
+  height: 87%;
   background: ${whiteColor};
   position: fixed;
   right: 8rem;

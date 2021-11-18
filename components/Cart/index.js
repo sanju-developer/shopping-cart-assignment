@@ -100,7 +100,7 @@ const Cart = () => {
             </>
           )}
         </CartCardStyles>
-        {apiData?.length !== 0 && (
+        {apiData?.length !== 0 && !isApiLoading && (
           <PromotionBanner>
             <Image src={lowestPrice} alt="lowestPrice" height="50px" />
             <p>You won't find it cheaper anywhere</p>

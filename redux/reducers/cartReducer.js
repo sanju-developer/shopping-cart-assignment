@@ -7,7 +7,7 @@ import {
   SET_OPEN_CLOSE_CART_STATE,
 } from "../actionTypes";
 const initialstate = {
-  apiData: null,
+  apiData: [],
   isApiLoading: false,
   apiErr: null,
   isCartOpen: false,

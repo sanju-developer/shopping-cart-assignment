@@ -10,6 +10,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+  padding-bottom: 40px;
+
   @media screen and (max-width: 480px) {
     width: 100%;
   }

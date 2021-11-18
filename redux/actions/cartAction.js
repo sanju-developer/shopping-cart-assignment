@@ -1,13 +1,18 @@
-import { getCartItemApiService } from "../../service/cart";
+import {
+  addToCartItemApiService,
+  getCartItemApiService,
+  removeItemFromCartApiService,
+} from "../../service/cart";
 import {
   IS_API_LOADING,
   ReducerName,
   SET_API_DATA,
   SET_API_ERR,
   SET_OPEN_CLOSE_CART_STATE,
+  SELECTED_PRODUCT,
 } from "../actionTypes";
 
-export const GetCartItemsAction = () => async (dispatch) => {
+export const getCartItemsAction = () => async (dispatch) => {
   dispatch({
     type: `${ReducerName.CART}_${IS_API_LOADING}`,
     payload: true,
@@ -37,12 +42,19 @@ export const openCloseCartAction = (openCloseState) => async (dispatch) => {
   });
 };
 
-export const AddToCartItemsAction = () => async (dispatch) => {
+export const addRemoveToCartItemsAction = (item, type) => async (dispatch) => {
   dispatch({
     type: `${ReducerName.ADD_TO_CART}_${IS_API_LOADING}`,
     payload: true,
   });
-  const resp = await getCartItemApiService();
+  dispatch({
+    type: `${ReducerName.ADD_TO_CART}_${SELECTED_PRODUCT}`,
+    payload: item,
+  });
+  const resp =
+    (await type) === "remove"
+      ? removeItemFromCartApiService(item)
+      : addToCartItemApiService(item);
   try {
     dispatch({
       type: `${ReducerName.ADD_TO_CART}_${IS_API_LOADING}`,
@@ -52,6 +64,7 @@ export const AddToCartItemsAction = () => async (dispatch) => {
       type: `${ReducerName.ADD_TO_CART}_${SET_API_DATA}`,
       payload: resp,
     });
+    dispatch(getCartItemsAction());
   } catch (error) {
     dispatch({
       type: `${ReducerName.ADD_TO_CART}_${SET_API_ERR}`,

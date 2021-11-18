@@ -1,9 +1,24 @@
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { CustomLoader } from "../Loaders";
 import WebsiteButton from "../StyledComponents/Buttons/WebsiteButton";
 
-export default function SimpleButton({ btnHandler, btnText, customPadding }) {
+export default function SimpleButton({
+  btnHandler,
+  btnText,
+  customPadding,
+  isDisabled,
+  showLoader,
+}) {
   return (
-    <WebsiteButton onClick={btnHandler} style={{ padding: customPadding }}>
+    <WebsiteButton
+      onClick={btnHandler}
+      style={{ padding: customPadding }}
+      disabled={isDisabled}
+      showLoader={showLoader}
+    >
       {btnText}
+      {showLoader && <CustomLoader />}
     </WebsiteButton>
   );
 }

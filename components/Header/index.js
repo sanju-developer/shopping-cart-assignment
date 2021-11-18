@@ -12,7 +12,7 @@ import { openCloseCartAction } from "../../redux/actions/cartAction";
 export default function Headers({ verifiedUser }) {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { isCartOpen } = useSelector((state) => state?.cart);
+  const { isCartOpen, apiData } = useSelector((state) => state?.cart);
 
   const navHandler = () => {
     dispatch(productFilter(null));
@@ -58,7 +58,7 @@ export default function Headers({ verifiedUser }) {
         )}
         <div className={styles.cart} onClick={cartHandler}>
           <Image src={cartLogo} alt="shopping-cart" />
-          <p>0 items</p>
+          <p>{apiData?.length ? apiData?.length : 0} items</p>
         </div>
       </div>
     </header>

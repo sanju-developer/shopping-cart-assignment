@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }) {
     if (getAccessToken()) {
       dispatch(loginAction());
     }
-    if (!isLoggedIn) {
+    if (!isLoggedIn && !getAccessToken()) {
       router.replace("/");
     }
   }, [isLoggedIn]);

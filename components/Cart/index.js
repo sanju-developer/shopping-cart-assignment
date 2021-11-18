@@ -1,11 +1,13 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/dist/client/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 
-import { openCloseCartAction } from "../../redux/actions/cartAction";
+import {
+  addRemoveToCartItemsAction,
+  openCloseCartAction,
+} from "../../redux/actions/cartAction";
 import {
   CartContainerStyles,
   CartHeaderStyle,
@@ -14,14 +16,13 @@ import {
   CartHeaderRightSection,
   CheckoutSection,
   CartCardStyles,
-  CartCardLeftSection,
+  CartCardSection,
   CartItemDetail,
   PromotionBanner,
 } from "../StyledComponents/Cart";
 import CheckoutButton from "../Button/checkoutBtn";
 import { CustomLoader } from "../Loaders";
 import { NoDataFound } from "../NoDataFound";
-import { GetCartItemsAction } from "../../redux/actions/cartAction";
 import SimpleButton from "../Button/simpletBtn";
 import { blackColor } from "../../styles/variables.module.scss";
 import lowestPrice from "../../public/static/images/lowest-price.png";
@@ -30,10 +31,6 @@ const Cart = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { isApiLoading, apiData } = useSelector((state) => state?.cart);
-
-  useEffect(() => {
-    dispatch(GetCartItemsAction());
-  }, []);
 
   const HideCart = (e) => {
     dispatch(openCloseCartAction(false));
@@ -71,7 +68,7 @@ const Cart = () => {
             apiData?.map((cart) => {
               return (
                 <>
-                  <CartCardLeftSection>
+                  <CartCardSection>
                     <Image
                       src={cart?.imageURL}
                       alt={cart?.name}
@@ -80,14 +77,26 @@ const Cart = () => {
                     />
                     <CartItemDetail>
                       <h4>{cart?.name}</h4>
-                      <SimpleButton btnText="-" customPadding="8px" />
-                      <span>1</span>
-                      <SimpleButton btnText="+" customPadding="8px" />
+                      <SimpleButton
+                        btnText="-"
+                        customPadding="8px"
+                        btnHandler={() =>
+                          dispatch(addRemoveToCartItemsAction(cart, "remove"))
+                        }
+                      />
+                      <span>{cart?.quantity}</span>
+                      <SimpleButton
+                        btnText="+"
+                        customPadding="8px"
+                        btnHandler={() =>
+                          dispatch(addRemoveToCartItemsAction(cart))
+                        }
+                      />
                       <FontAwesomeIcon icon={faTimes} color={blackColor} />
-                      <p>Rs.{cart?.price}</p>
+                      <p>Rs.{cart?.price * cart?.quantity}</p>
                     </CartItemDetail>
-                    <p>Rs.{cart?.price}</p>
-                  </CartCardLeftSection>
+                    <p>Rs.{cart?.price * cart?.quantity}</p>
+                  </CartCardSection>
                 </>
               );
             })

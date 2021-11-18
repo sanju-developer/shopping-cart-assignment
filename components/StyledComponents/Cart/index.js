@@ -93,17 +93,20 @@ export const CartCardStyles = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  background: ${whiteColor};
-  padding: 16px;
   margin-top: 16px;
 `;
 
-export const CartCardLeftSection = styled.div`
+export const CartCardSection = styled.div`
   display: flex;
   align-items: stretch;
+  background: ${whiteColor};
+  margin-bottom: 14px;
+  width: 100%;
+  padding: 8px 16px;
   > *:last-child {
     ${fontWithBlackAndWeight("18px")};
     align-self: self-end;
+    margin: 0px;
   }
 `;
 
@@ -137,8 +140,8 @@ export const CartItemDetail = styled.div`
 export const PromotionBanner = styled.div`
   display: flex;
   background: ${whiteColor};
-  margin: 16px;
-  padding: 10px 16px;
+  margin: 0px 16px;
+  padding: 8px;
   align-items: center;
 
   p {

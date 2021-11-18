@@ -33,6 +33,7 @@ export const CartStyles = styled.div`
   top: 75px;
   background: ${greyColor};
   padding-bottom: 40px;
+  padding-bottom: 70px;
 
   @media screen and (max-width: 768px) {
     width: 100%;

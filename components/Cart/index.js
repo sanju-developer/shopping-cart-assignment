@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/dist/client/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
@@ -19,14 +20,15 @@ import {
 } from "../StyledComponents/Cart";
 import CheckoutButton from "../Button/checkoutBtn";
 import { CustomLoader } from "../Loaders";
-import NoDataFound from "../NoDataFound";
-import GetCartItemsAction from "../../redux/actions/cartAction";
+import { NoDataFound } from "../NoDataFound";
+import { GetCartItemsAction } from "../../redux/actions/cartAction";
 import SimpleButton from "../Button/simpletBtn";
 import { blackColor } from "../../styles/variables.module.scss";
 import lowestPrice from "../../public/static/images/lowest-price.png";
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const { isApiLoading, apiData } = useSelector((state) => state?.cart);
 
   useEffect(() => {
@@ -39,6 +41,11 @@ const Cart = () => {
 
   const innerCartItemHandler = (e) => {
     e.stopPropagation();
+  };
+
+  const checkoutBtnHandler = () => {
+    dispatch(openCloseCartAction(false));
+    router.replace("/");
   };
 
   return (
@@ -85,21 +92,36 @@ const Cart = () => {
               );
             })
           ) : (
-            <NoDataFound />
+            <>
+              <NoDataFound
+                text="No Items in your cart"
+                additionText="Your favourite items are just a click away"
+              />
+            </>
           )}
         </CartCardStyles>
-        <CheckoutSection>
-          <p>Promocode can be applied on payment page</p>
-          <CheckoutButton
-            btnText="Proceed to Checkout"
-            price={120}
-            btnHandler={() => {}}
-          />
-        </CheckoutSection>
-        <PromotionBanner>
-          <Image src={lowestPrice} alt="lowestPrice" height="50px" />
-          <p>You won't find it cheaper anywhere</p>
-        </PromotionBanner>
+        {apiData?.length !== 0 && (
+          <PromotionBanner>
+            <Image src={lowestPrice} alt="lowestPrice" height="50px" />
+            <p>You won't find it cheaper anywhere</p>
+          </PromotionBanner>
+        )}
+        {!isApiLoading && (
+          <CheckoutSection>
+            {apiData?.length !== 0 && (
+              <p>Promocode can be applied on payment page</p>
+            )}
+            <CheckoutButton
+              btnText={` ${
+                apiData?.length !== 0 ? "Proceed to Checkout" : "Start Shopping"
+              }`}
+              price={apiData?.length !== 0 ? 120 : false}
+              btnHandler={() =>
+                apiData?.length !== 0 ? {} : checkoutBtnHandler()
+              }
+            />
+          </CheckoutSection>
+        )}
       </CartStyles>
     </CartContainerStyles>
   );

@@ -10,7 +10,8 @@ const CheckoutButton = styled.button`
   width: 100%;
   cursor: pointer;
   display: flex;
-  justify-content: space-between;
+  justify-content: ${(props) =>
+    props?.isJustifyContentCenter ? `space-between` : `center`};
   align-items: center;
 `;
 

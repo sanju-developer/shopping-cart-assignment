@@ -12,12 +12,15 @@ export default function CheckoutButton({
     <CheckoutButtonStyles
       onClick={btnHandler}
       style={{ padding: customPadding }}
+      isJustifyContentCenter={price}
     >
       {btnText}
-      <p>
-        Rs.{price}&nbsp;&nbsp;
-        <FontAwesomeIcon icon={faGreaterThan} />
-      </p>
+      {price && (
+        <p>
+          Rs.{price}&nbsp;&nbsp;
+          <FontAwesomeIcon icon={faGreaterThan} />
+        </p>
+      )}
     </CheckoutButtonStyles>
   );
 }

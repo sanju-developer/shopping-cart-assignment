@@ -10,6 +10,9 @@ const initialstate = {
   isApiLoading: false,
   apiErr: null,
   isCartOpen: false,
+  isAddToCartApiLoading: false,
+  isAddToCartApiSuccess: false,
+  isAddToCartApiErr: null,
 };
 const CartReducer = (state = initialstate, action) => {
   switch (action.type) {
@@ -30,6 +33,24 @@ const CartReducer = (state = initialstate, action) => {
         isApiLoading: false,
         apiErr: action.payload,
         apiData: false,
+      };
+    case `${ReducerName.ADD_TO_CART}_${IS_API_LOADING}`:
+      return {
+        ...state,
+        isAddToCartApiLoading: true,
+      };
+    case `${ReducerName.ADD_TO_CART}_${SET_API_DATA}`:
+      return {
+        ...state,
+        isAddToCartApiLoading: false,
+        isAddToCartApiSuccess: action.payload,
+      };
+    case `${ReducerName.ADD_TO_CART}_${SET_API_ERR}`:
+      return {
+        ...state,
+        isAddToCartApiLoading: false,
+        isAddToCartApiErr: action.payload,
+        isAddToCartApiSuccess: false,
       };
     case `${ReducerName.CART}_${SET_OPEN_CLOSE_CART_STATE}`:
       return {

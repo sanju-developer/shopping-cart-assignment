@@ -10,4 +10,5 @@ export const ReducerName = {
   PRODUCT: "PRODUCT_PAGE",
   AUTH: "AUTH",
   CART: "CART",
+  ADD_TO_CART: "ADD_TO_CART",
 };

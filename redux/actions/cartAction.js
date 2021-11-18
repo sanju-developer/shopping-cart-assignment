@@ -7,7 +7,7 @@ import {
   SET_OPEN_CLOSE_CART_STATE,
 } from "../actionTypes";
 
-const GetCartItemsAction = () => async (dispatch) => {
+export const GetCartItemsAction = () => async (dispatch) => {
   dispatch({
     type: `${ReducerName.CART}_${IS_API_LOADING}`,
     payload: true,
@@ -37,4 +37,25 @@ export const openCloseCartAction = (openCloseState) => async (dispatch) => {
   });
 };
 
-export default GetCartItemsAction;
+export const AddToCartItemsAction = () => async (dispatch) => {
+  dispatch({
+    type: `${ReducerName.ADD_TO_CART}_${IS_API_LOADING}`,
+    payload: true,
+  });
+  const resp = await getCartItemApiService();
+  try {
+    dispatch({
+      type: `${ReducerName.ADD_TO_CART}_${IS_API_LOADING}`,
+      payload: false,
+    });
+    dispatch({
+      type: `${ReducerName.ADD_TO_CART}_${SET_API_DATA}`,
+      payload: resp,
+    });
+  } catch (error) {
+    dispatch({
+      type: `${ReducerName.ADD_TO_CART}_${SET_API_ERR}`,
+      payload: error,
+    });
+  }
+};

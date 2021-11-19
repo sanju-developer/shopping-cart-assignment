@@ -19,7 +19,7 @@
     }
     nav {
       display: flex;
-      align-items: flex-end;
+      align-items: end;
       padding-left: 75px;
       @include navTexts;
       li {

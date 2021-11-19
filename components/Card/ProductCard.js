@@ -22,7 +22,7 @@ export const ProductCard = ({ product, id }) => {
   };
 
   return (
-    <ProductCardStyle key={id}>
+    <ProductCardStyle>
       <h4>{product?.name}</h4>
       <ProductDetailStyle>
         <Image

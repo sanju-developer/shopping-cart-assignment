@@ -58,7 +58,11 @@ export default function Products() {
           <CustomLoader />
         ) : apiData?.length !== 0 ? (
           apiData?.map((product) => (
-            <ProductCard id={product?.id} Key={product?.id} product={product} />
+            <ProductCard
+              id={product?.id}
+              Key={product.id + "card"}
+              product={product}
+            />
           ))
         ) : (
           <NoDataFound />

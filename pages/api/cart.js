@@ -1,4 +1,5 @@
 import CartSuccessResponse from "../server/addToCart/index.post.json";
+import CartSuccessOnRemoveResponse from "../server/addToCart/CartSuccessOnRemoveResponse.json";
 
 let cartItems = [];
 export default function cartApi(req, res) {
@@ -45,7 +46,7 @@ export function removeFromCartApi(req, res) {
         cartItems = copyOfCartItems.filter((item) => item.id !== req.body.id);
         resolve(
           setTimeout(() => {
-            res.status(200).json(CartSuccessResponse);
+            res.status(200).json(CartSuccessOnRemoveResponse);
           }, 500)
         );
         return;
@@ -58,7 +59,7 @@ export function removeFromCartApi(req, res) {
     }
     resolve(
       setTimeout(() => {
-        res.status(200).json(CartSuccessResponse);
+        res.status(200).json(CartSuccessOnRemoveResponse);
       }, 500)
     );
   });

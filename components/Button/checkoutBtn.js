@@ -7,12 +7,14 @@ export default function CheckoutButton({
   btnText,
   customPadding,
   price,
+  isDisabled,
 }) {
   return (
     <CheckoutButtonStyles
       onClick={btnHandler}
       style={{ padding: customPadding }}
       isJustifyContentCenter={price}
+      disabled={isDisabled}
     >
       {btnText}
       {price && (

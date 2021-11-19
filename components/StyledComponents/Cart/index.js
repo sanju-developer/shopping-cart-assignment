@@ -24,7 +24,7 @@ export const CartContainerStyles = styled.section`
 
 export const CartStyles = styled.div`
   width: 40%;
-  height: calc(100% - 150px);
+  height: calc(100% - 100px);
   overflow-y: scroll;
   overflow-x: hidden;
   background: ${whiteColor};
@@ -32,12 +32,12 @@ export const CartStyles = styled.div`
   right: 8rem;
   top: 75px;
   background: ${greyColor};
-  padding-bottom: 40px;
   padding-bottom: 70px;
 
   @media screen and (max-width: 768px) {
     width: 100%;
     right: 0px;
+    height: calc(100% - 150px);
   }
 `;
 
@@ -80,6 +80,13 @@ export const CartHeaderRightSection = styled.div`
     color: ${whiteColor};
     cursor: pointer;
   }
+
+  @media screen and (max-width: 768px) {
+    button {
+      background: none;
+      color: ${blackColor};
+    }
+  }
 `;
 
 export const CheckoutSection = styled.footer`
@@ -110,6 +117,9 @@ export const CartCardSection = styled.div`
   margin-bottom: 14px;
   width: 100%;
   padding: 8px 16px;
+  div {
+    flex-grow: 2;
+  }
   > *:last-child {
     ${fontWithBlackAndWeight("18px")};
     align-self: self-end;

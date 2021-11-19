@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { ToastContainer } from "react-toastify";
 
 import Footer from "../components/Footer";
 import Headers from "../components/Header";
@@ -13,6 +14,7 @@ import Cart from "../components/Cart";
 
 import styles from "../styles/Home.module.css";
 import "../styles/globals.css";
+import "react-toastify/dist/ReactToastify.css";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -33,6 +35,11 @@ function MyApp({ Component, pageProps }) {
     <main>
       <Headers verifiedUser={isLoggedIn} />
       <div className={styles.container}>
+        <ToastContainer
+          position="top-right"
+          hideProgressBar={true}
+          autoClose={4000}
+        />
         {isLoggedIn ? (
           <>
             <Component {...pageProps} />

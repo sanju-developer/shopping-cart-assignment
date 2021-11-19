@@ -90,6 +90,7 @@ const Cart = () => {
                       <h4>{cart?.name}</h4>
                       <SimpleButton
                         btnText="-"
+                        isDisabled={isApiLoading}
                         customPadding="8px"
                         btnHandler={() =>
                           dispatch(addRemoveToCartItemsAction(cart, "remove"))
@@ -97,6 +98,7 @@ const Cart = () => {
                       />
                       <span>{cart?.quantity}</span>
                       <SimpleButton
+                        isDisabled={isApiLoading}
                         btnText="+"
                         customPadding="8px"
                         btnHandler={() =>
@@ -126,22 +128,21 @@ const Cart = () => {
             <p>You won't find it cheaper anywhere</p>
           </PromotionBanner>
         )}
-        {!isApiLoading && (
-          <CheckoutSection>
-            {apiData?.length !== 0 && (
-              <p>Promocode can be applied on payment page</p>
-            )}
-            <CheckoutButton
-              btnText={` ${
-                apiData?.length !== 0 ? "Proceed to Checkout" : "Start Shopping"
-              }`}
-              price={apiData?.length !== 0 ? totalAmount : false}
-              btnHandler={() =>
-                apiData?.length !== 0 ? {} : checkoutBtnHandler()
-              }
-            />
-          </CheckoutSection>
-        )}
+        <CheckoutSection>
+          {apiData?.length !== 0 && (
+            <p>Promocode can be applied on payment page</p>
+          )}
+          <CheckoutButton
+            isDisabled={isApiLoading}
+            btnText={` ${
+              apiData?.length !== 0 ? "Proceed to Checkout" : "Start Shopping"
+            }`}
+            price={apiData?.length !== 0 ? totalAmount : false}
+            btnHandler={() =>
+              apiData?.length !== 0 ? {} : checkoutBtnHandler()
+            }
+          />
+        </CheckoutSection>
       </CartStyles>
     </CartContainerStyles>
   );

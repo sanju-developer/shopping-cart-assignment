@@ -11,7 +11,9 @@ import {
   SET_OPEN_CLOSE_CART_STATE,
   SELECTED_PRODUCT,
 } from "../actionTypes";
+import { toast } from "react-toastify";
 
+const toastId = "custom-id-yes";
 export const getCartItemsAction = () => async (dispatch) => {
   dispatch({
     type: `${ReducerName.CART}_${IS_API_LOADING}`,
@@ -63,6 +65,10 @@ export const addRemoveToCartItemsAction = (item, type) => async (dispatch) => {
     dispatch({
       type: `${ReducerName.ADD_TO_CART}_${SET_API_DATA}`,
       payload: resp,
+    });
+    toast.success(resp.responseMessage, {
+      duration: 5,
+      toastId: toastId,
     });
     dispatch(getCartItemsAction());
   } catch (error) {

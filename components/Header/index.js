@@ -45,14 +45,16 @@ export default function Headers({ verifiedUser }) {
             onClick={() => router.replace("/")}
           />
         </div>
-        <nav>
-          <li onClick={closeAddToCartModuleHandler}>
-            <Link href="/home">Home</Link>
-          </li>
-          <li onClick={navHandler}>
-            <Link href="/products">Products</Link>
-          </li>
-        </nav>
+        {verifiedUser && (
+          <nav>
+            <li onClick={closeAddToCartModuleHandler}>
+              <Link href="/home">Home</Link>
+            </li>
+            <li onClick={navHandler}>
+              <Link href="/products">Products</Link>
+            </li>
+          </nav>
+        )}
       </div>
       <div className={styles.rightPortion} style={{ flexDirection: "column" }}>
         <div className={styles.authNavigation}>

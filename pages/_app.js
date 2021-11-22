@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps }) {
       <Headers verifiedUser={isLoggedIn} />
       <div className={styles.container}>
         <ToastContainer
-          position="top-right"
+          position="bottom-right"
           hideProgressBar={true}
           autoClose={4000}
         />

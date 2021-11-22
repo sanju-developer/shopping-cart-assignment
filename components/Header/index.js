@@ -5,9 +5,11 @@ import Link from "next/link";
 
 import logo from "/public/static/images/logo.png";
 import styles from "./Header.module.scss";
-import cartLogo from "/public/static/images/cart.svg";
 import { productFilter } from "../../redux/actions/productsAction";
 import { openCloseCartAction } from "../../redux/actions/cartAction";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { btnColor } from "../../styles/variables.module.scss";
 
 export default function Headers({ verifiedUser }) {
   const dispatch = useDispatch();
@@ -57,7 +59,7 @@ export default function Headers({ verifiedUser }) {
           </div>
         )}
         <div className={styles.cart} onClick={cartHandler}>
-          <Image src={cartLogo} alt="shopping-cart" />
+          <FontAwesomeIcon icon={faShoppingCart} size="lg" color={btnColor} />
           <p>{apiData?.length ? apiData?.length : 0} items</p>
         </div>
       </div>

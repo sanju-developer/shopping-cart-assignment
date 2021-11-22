@@ -9,6 +9,7 @@ export default function SimpleButton({
   customPadding,
   isDisabled,
   showLoader,
+  type = "button",
 }) {
   return (
     <WebsiteButton
@@ -16,6 +17,7 @@ export default function SimpleButton({
       style={{ padding: customPadding }}
       disabled={isDisabled}
       showLoader={showLoader}
+      type={type}
     >
       {btnText}
       {showLoader && <CustomLoader />}

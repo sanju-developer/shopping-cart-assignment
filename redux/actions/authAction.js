@@ -2,9 +2,10 @@ import {
   IS_API_LOADING,
   ReducerName,
   SET_API_DATA,
+  CLEAR_API_DATA,
   SET_API_ERR,
 } from "../actionTypes";
-import { setAccessToken } from "../../utils/storageUtils";
+import { clearUserSession, setAccessToken } from "../../utils/storageUtils";
 
 const loginAction = () => async (dispatch) => {
   dispatch({
@@ -30,3 +31,11 @@ const loginAction = () => async (dispatch) => {
 };
 
 export default loginAction;
+
+export const logoutAction = () => async (dispatch) => {
+  clearUserSession();
+  dispatch({
+    type: `${ReducerName.AUTH}_${CLEAR_API_DATA}`,
+    payload: true,
+  });
+};

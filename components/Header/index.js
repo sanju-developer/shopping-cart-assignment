@@ -10,6 +10,7 @@ import { openCloseCartAction } from "../../redux/actions/cartAction";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { btnColor } from "../../styles/variables.module.scss";
+import { logoutAction } from "../../redux/actions/authAction";
 
 export default function Headers({ verifiedUser }) {
   const dispatch = useDispatch();
@@ -27,6 +28,11 @@ export default function Headers({ verifiedUser }) {
 
   const closeAddToCartModuleHandler = () => {
     dispatch(openCloseCartAction(false));
+  };
+
+  const signOutHandler = () => {
+    dispatch(logoutAction());
+    router.replace("/");
   };
 
   return (
@@ -48,16 +54,19 @@ export default function Headers({ verifiedUser }) {
           </li>
         </nav>
       </div>
-      <div
-        className={styles.rightPortion}
-        style={{ flexDirection: verifiedUser ? "row" : "column" }}
-      >
-        {!verifiedUser && (
-          <div className={styles.authNavigation}>
-            <Link href="/signIn">SignIn</Link>
-            <Link href="/signUp">Register</Link>
-          </div>
-        )}
+      <div className={styles.rightPortion} style={{ flexDirection: "column" }}>
+        <div className={styles.authNavigation}>
+          {!verifiedUser ? (
+            <>
+              <Link href="/signIn">SignIn</Link>
+              <Link href="/signUp">Register</Link>
+            </>
+          ) : (
+            <Link href="/" onClick={signOutHandler}>
+              <a onClick={signOutHandler}> Sign out</a>
+            </Link>
+          )}
+        </div>
         <div className={styles.cart} onClick={cartHandler}>
           <FontAwesomeIcon icon={faShoppingCart} size="lg" color={btnColor} />
           <p>{apiData?.length ? apiData?.length : 0} items</p>

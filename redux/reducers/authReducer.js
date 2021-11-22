@@ -3,6 +3,7 @@ import {
   ReducerName,
   SET_API_DATA,
   SET_API_ERR,
+  CLEAR_API_DATA,
 } from "../actionTypes";
 const initialstate = {
   isLoggedIn: false,
@@ -29,6 +30,14 @@ const AuthReducer = (state = initialstate, action) => {
         apiErr: action.payload,
         isLoggedIn: false,
       };
+    case `${ReducerName.AUTH}_${CLEAR_API_DATA}`:
+      return {
+        ...state,
+        isApiLoading: false,
+        apiErr: action.payload,
+        isLoggedIn: false,
+      };
+
     default:
       return { ...state };
   }

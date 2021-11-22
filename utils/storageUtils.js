@@ -9,3 +9,7 @@ export function setAccessToken(token) {
 export function getAccessToken() {
   return localStorage.getItem("accessToken");
 }
+
+export function clearUserSession() {
+  localStorage.clear();
+}

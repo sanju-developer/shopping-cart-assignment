@@ -32,12 +32,13 @@ export const CartStyles = styled.div`
   right: 8rem;
   top: 75px;
   background: ${greyColor};
-  padding-bottom: 70px;
+  padding-bottom: 100px;
 
   @media screen and (max-width: 768px) {
     width: 100%;
     right: 0px;
     height: calc(100% - 150px);
+    padding-bottom: 70px;
   }
 `;
 

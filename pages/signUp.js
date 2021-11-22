@@ -11,6 +11,7 @@ import {
 import SimpleButton from "../components/Button/simpletBtn";
 import { useRouter } from "next/router";
 import loginAction from "../redux/actions/authAction";
+import { emailValidation } from "../utils/helper";
 
 const SignUp = () => {
   const router = useRouter();
@@ -26,6 +27,13 @@ const SignUp = () => {
 
   const singupBtnHandler = (e) => {
     e.preventDefault();
+    if (!emailValidation(formState.email)) {
+      toast.warn("Please enter a valid email.", {
+        duration: 5,
+        toastId: singupToastId,
+      });
+      return;
+    }
     if (formState.password !== formState.cPassword) {
       toast.warn("Password and Confirm Password not matched.", {
         duration: 5,

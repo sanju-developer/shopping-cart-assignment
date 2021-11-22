@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
@@ -10,8 +11,10 @@ import {
 } from "../components/StyledComponents/Auth/Auth";
 import SimpleButton from "../components/Button/simpletBtn";
 import loginAction from "../redux/actions/authAction";
+import { emailValidation } from "../utils/helper";
 
 const SignIn = () => {
+  const singInToastId = "#singInToastId#";
   const router = useRouter();
   const dispatch = useDispatch();
   const [formState, setFormState] = useState({
@@ -19,6 +22,14 @@ const SignIn = () => {
     password: "",
   });
   const loginBtnHandler = (e) => {
+    e.preventDefault();
+    if (!emailValidation(formState.email)) {
+      toast.warn("Please enter a valid email.", {
+        duration: 5,
+        toastId: singInToastId,
+      });
+      return;
+    }
     dispatch(loginAction());
     router.push("/home");
   };

@@ -5,7 +5,7 @@ import {
   fz12,
   greyColor,
 } from "../../../styles/variables.module.scss";
-import { navTextsMixin, fontWithBlackAndWeight } from "../mixins";
+import { fontWithBlackAndWeight } from "../mixins";
 
 export const CartContainerStyles = styled.section`
   width: 100%;

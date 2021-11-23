@@ -153,6 +153,20 @@ export const CartItemDetail = styled.div`
     height: 25px;
     line-height: 0;
   }
+
+  @media screen and (max-width: 480px) {
+    h4,
+    p {
+      font-size: 14px;
+    }
+    button {
+      width: 20px;
+      height: 20px;
+    }
+    svg {
+      margin: 0px 8px 0px 12px;
+    }
+  }
 `;
 
 export const PromotionBanner = styled.div`

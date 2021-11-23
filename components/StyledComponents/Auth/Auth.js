@@ -42,7 +42,7 @@ export const SectionRight = styled.form`
 
     input:focus ~ label,
     input:valid ~ label {
-      top: -10px;
+      top: -16px;
       font-size: 14px;
       color: ${greenColor};
     }

@@ -10,6 +10,7 @@ import {
   SET_API_ERR,
   SET_OPEN_CLOSE_CART_STATE,
   SELECTED_PRODUCT,
+  CLEAR_API_DATA,
 } from "../actionTypes";
 import { toast } from "react-toastify";
 
@@ -77,4 +78,11 @@ export const addRemoveToCartItemsAction = (item, type) => async (dispatch) => {
       payload: error,
     });
   }
+};
+
+export const clearCartItemsAction = () => async (dispatch) => {
+  dispatch({
+    type: `${ReducerName.ADD_TO_CART}_${CLEAR_API_DATA}`,
+    payload: true,
+  });
 };

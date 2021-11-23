@@ -6,7 +6,10 @@ import Link from "next/link";
 import logo from "/public/static/images/logo.png";
 import styles from "./Header.module.scss";
 import { productFilter } from "../../redux/actions/productsAction";
-import { openCloseCartAction } from "../../redux/actions/cartAction";
+import {
+  clearCartItemsAction,
+  openCloseCartAction,
+} from "../../redux/actions/cartAction";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { btnColor } from "../../styles/variables.module.scss";
@@ -31,6 +34,7 @@ export default function Headers({ verifiedUser }) {
   };
 
   const signOutHandler = () => {
+    dispatch(clearCartItemsAction());
     dispatch(logoutAction());
     router.replace("/");
   };

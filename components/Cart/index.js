@@ -78,39 +78,37 @@ const Cart = () => {
           ) : apiData?.length !== 0 ? (
             apiData?.map((cart) => {
               return (
-                <>
-                  <CartCardSection key={cart.id}>
-                    <Image
-                      src={cart?.imageURL}
-                      alt={cart?.name}
-                      width="75"
-                      height="75"
+                <CartCardSection key={cart.id}>
+                  <Image
+                    src={cart?.imageURL}
+                    alt={cart?.name}
+                    width="75"
+                    height="75"
+                  />
+                  <CartItemDetail>
+                    <h4>{cart?.name}</h4>
+                    <SimpleButton
+                      btnText="-"
+                      isDisabled={isApiLoading}
+                      customPadding="8px"
+                      btnHandler={() =>
+                        dispatch(addRemoveToCartItemsAction(cart, "remove"))
+                      }
                     />
-                    <CartItemDetail>
-                      <h4>{cart?.name}</h4>
-                      <SimpleButton
-                        btnText="-"
-                        isDisabled={isApiLoading}
-                        customPadding="8px"
-                        btnHandler={() =>
-                          dispatch(addRemoveToCartItemsAction(cart, "remove"))
-                        }
-                      />
-                      <span>{cart?.quantity}</span>
-                      <SimpleButton
-                        isDisabled={isApiLoading}
-                        btnText="+"
-                        customPadding="8px"
-                        btnHandler={() =>
-                          dispatch(addRemoveToCartItemsAction(cart))
-                        }
-                      />
-                      <FontAwesomeIcon icon={faTimes} color={blackColor} />
-                      <p>Rs.{cart?.price * cart?.quantity}</p>
-                    </CartItemDetail>
+                    <span>{cart?.quantity}</span>
+                    <SimpleButton
+                      isDisabled={isApiLoading}
+                      btnText="+"
+                      customPadding="8px"
+                      btnHandler={() =>
+                        dispatch(addRemoveToCartItemsAction(cart))
+                      }
+                    />
+                    <FontAwesomeIcon icon={faTimes} color={blackColor} />
                     <p>Rs.{cart?.price * cart?.quantity}</p>
-                  </CartCardSection>
-                </>
+                  </CartItemDetail>
+                  <p>Rs.{cart?.price * cart?.quantity}</p>
+                </CartCardSection>
               );
             })
           ) : (

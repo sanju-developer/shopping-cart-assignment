@@ -1,4 +1,5 @@
 import {
+  CLEAR_API_DATA,
   IS_API_LOADING,
   ReducerName,
   SELECTED_PRODUCT,
@@ -65,6 +66,11 @@ const CartReducer = (state = initialstate, action) => {
       return {
         ...state,
         isCartOpen: action.payload,
+      };
+    case `${ReducerName.ADD_TO_CART}_${CLEAR_API_DATA}`:
+      return {
+        ...state,
+        apiData: [],
       };
     default:
       return { ...state };
